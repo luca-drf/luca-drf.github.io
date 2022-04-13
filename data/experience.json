@@ -1,0 +1,26 @@
+[
+    {
+        "role": "Production Software Developer",
+        "company": "[EMBL-EBI](https://www.ebi.ac.uk/) - Ensembl",
+        "summary": "Contributed to the development, maintainance and design of REST and RPC Web APIs as well as Web GUIs (mainly Python, JavaScript and MySQL). Maintained data pipelines for genomic data running on LSF Platform (Python and Perl). Designed and implemented automated deployment for migrating part of the internal production infrastructure to Kubernetes. Designed and developed an automated file metadata indexing system (Python and MongoDB) as well as Web APIs for searching and modifing the indexed data (gRPC and FastAPI). Contributed to setting organisation-wide guidelines for Python software development.",
+        "range": "October 2019 - Present"
+    },
+    {
+        "role": "Senior Software Engineer",
+        "company": "[Wellcome Sanger Institute](https://www.sanger.ac.uk/) - DNA Pipelines - PSD",
+        "summary": "Contributed to the development and maintenance of internal Web Services and applications (mainly Ruby on Rails, VueJS, MySQL and RabbitMQ). Developed infrastructure and DevOps tools for deploying DNA Pipelines (DNAP) Production Web Services on OpenStack using Terraform and Ansible. Developed a bespoke linear optimization software for DNAP R&D team, in Python.",
+        "range": "September 2017 - October 2019"
+    },  
+    {
+        "role": "Graduate Software Engineer",
+        "company": "[Imagination Technologies](https://www.imaginationtech.com/) - MIPS Platforms",
+        "summary": "Developed the automation of integration and functional tests of the MIPS SDK on MIPS boards over the network using Ansible and integrated it to the existing CI system. Developed a web application to manage and monitor MIPS boards over the network using Django. Developed a graphical MIPS Makefile generator Desktop application using Python and C.",
+        "range": "October 2015 - September 2017"
+    },
+    {
+        "role": "Teaching Assistant",
+        "company": "[New Mexico State University](https://nmsu.edu/) - Dept. of Computer Science",
+        "summary": "Classes: Object Oriented Programming, Computer Science I",
+        "range": "August 2012 - May 2014"
+    }
+]

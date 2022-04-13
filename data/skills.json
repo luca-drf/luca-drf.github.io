@@ -1,0 +1,30 @@
+[
+  {
+    "grouping": "Programming Languages",
+    "skills": ["Python", "JavaScript", "Ruby", {"name": "C++", "icon": "cplusplus"}, "C", "Perl", "Java", "Bash"]
+  },
+  {
+    "grouping": "Testing Frameworks",
+    "skills": ["Pytest", "RSpec", "Jest", "GoogleTest"]
+  },
+  {
+    "grouping": "Web Frameworks",
+    "skills": ["Flask", "Django", "FastAPI", "gRPC", "VueJS"]
+  },
+  {
+    "grouping": "Databases",
+    "skills": ["MySQL", "MongoDB", "PostgreSQL"]
+  },
+  {
+    "grouping": "Infrastructure",
+    "skills": ["Kubernetes", "RabbitMQ", "OpenStack", "Ansible", "Terraform"]
+  },
+  {
+    "grouping": "Version Control",
+    "skills": ["Git", "Perforce Helix", "GitHub", "Travis", "GitLab"]
+  },
+  {
+    "grouping": "Operating Systems",
+    "skills":["Linux", {"name": "macOS", "icon": "apple"}, {"name": "MS Windows", "icon": "windows8"}]
+  }
+]

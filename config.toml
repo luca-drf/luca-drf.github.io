@@ -1,0 +1,59 @@
+title = "Luca Da Rin Fioretto"
+baseURL = "https://lucadrf.dev/"
+theme = "hugo-resume"
+languageCode = "en-us"
+enableGitInfo = false
+
+[markup]
+  [markup.highlight]
+    anchorLineNos = false
+    codeFences = true
+    guessSyntax = true
+    hl_Lines = ''
+    lineAnchors = ''
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = true
+    noClasses = true
+    noHl = false
+    style = 'manni'
+    tabWidth = 4
+
+[params]
+jobTitle = "Production Software Developer"
+employer = "EMBL-EBI"
+employerUrl = "https://www.ebi.ac.uk/"
+favicon = "/favicon.ico"
+firstName = "Luca"
+lastName = "Da Rin Fioretto"
+profileImage = "img/daro_profile.png"
+themeUrl = "https://github.com/luca-drf/hugo-resume"
+showGitHubCorner = true
+showEducation = true
+showExperience = true
+showBlog = true
+showOpenSource = false
+showProjects = false
+showPublications = false
+showQr = false
+showSkills = true
+showCertifications = false
+
+[params.google]
+
+[params.google.analytics]
+trackerID = "XX-123446-01"
+
+[[params.handles]]
+link = "https://www.linkedin.com/in/lucadrf/"
+name = "LinkedIn"
+
+[[params.handles]]
+link = "https://github.com/luca-drf/"
+name = "GitHub"
+
+[outputs]
+home = ["HTML", "JSON"]
+
+[taxonomies]
+tag = "tags"

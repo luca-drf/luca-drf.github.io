@@ -1,0 +1,17 @@
+[
+    {
+        "school": "[New Mexico State University](https://nmsu.edu/)",
+        "degree": "Master of Science",
+        "major": "Computer Science",
+        "thesis": "Solving large-scale DCOP using Distributed Gibbs sampling on GPGPU devices.",
+        "notes": "**Pubblications:** GD-Gibbs: A GPU-based Sampling Algorithm for Solving Distributed Constraint Optimization Problems - AAMAS 2014",
+        "range": "Class 2014"
+    },
+    {
+        "school": "[Università degli Studi di Parma](https://www.unipr.it/)",
+        "degree": "Bachelor of Science",
+        "major": "Computer Science",
+        "thesis": "A Parallel SAT solver exploiting the capabilities of the GPGPU paradigm to solve large scale problems.",
+        "range": "Class 2012"
+    }
+]
