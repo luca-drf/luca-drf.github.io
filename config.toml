@@ -40,10 +40,29 @@ showQr = false
 showSkills = true
 showCertifications = false
 
-[params.google]
+[privacy]
+  [privacy.disqus]
+    disable = false
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    disable = false
+    respectDoNotTrack = true
+    useSessionStorage = false
+  [privacy.instagram]
+    disable = false
+    simple = false
+  [privacy.twitter]
+    disable = false
+    enableDNT = false
+    simple = false
+  [privacy.vimeo]
+    disable = false
+    enableDNT = false
+    simple = false
+  [privacy.youtube]
+    disable = false
+    privacyEnhanced = false
 
-[params.google.analytics]
-trackerID = "XX-123446-01"
 
 [[params.handles]]
 link = "https://www.linkedin.com/in/lucadrf/"
