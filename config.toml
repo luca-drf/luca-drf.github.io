@@ -16,7 +16,7 @@ enableGitInfo = false
     lineNumbersInTable = true
     noClasses = true
     noHl = false
-    style = 'manni'
+    style = 'github'
     tabWidth = 4
 
 [params]
