@@ -20,9 +20,9 @@ enableGitInfo = false
     tabWidth = 4
 
 [params]
-jobTitle = "Production Software Developer"
-employer = "EMBL-EBI"
-employerUrl = "https://www.ebi.ac.uk/"
+jobTitle = "Senior Software Engineer"
+employer = "Arm"
+employerUrl = "https://www.arm.com/"
 favicon = "/favicon.ico"
 firstName = "Luca"
 lastName = "Da Rin Fioretto"
