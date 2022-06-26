@@ -260,12 +260,12 @@ WORKDIR /opt/oracle
 
 RUN apt-get update \
     && apt-get install -y libaio1 wget unzip \
-    && wget https://download.oracle.com/otn_software/linux/instantclient/instantclient-basiclite-linuxx64.zip \
-    && unzip instantclient-basiclite-linuxx64.zip \
-    && rm -f instantclient-basiclite-linuxx64.zip \
-    && cd /opt/oracle/instantclient* \
+    && wget https://download.oracle.com/otn_software/linux/instantclient/1915000/instantclient-basiclite-linux.x64-19.15.0.0.0dbru-2.zip \
+    && unzip instantclient-basiclite-linux.x64-19.15.0.0.0dbru-2.zip \
+    && rm -f instantclient-basiclite-linux.x64-19.15.0.0.0dbru-2.zip \
+    && cd /opt/oracle/instantclient_19_15 \
     && rm -f *jdbc* *occi* *mysql* *README *jar uidrvci genezi adrci \
-    && echo /opt/oracle/instantclient* > /etc/ld.so.conf.d/oracle-instantclient.conf \
+    && echo /opt/oracle/instantclient_19_15 > /etc/ld.so.conf.d/oracle-instantclient.conf \
     && ldconfig \
     && apt-get purge -y --auto-remove wget unzip
 
@@ -303,7 +303,7 @@ docker run --platform linux/amd64 oracle_client_app:latest
 Which, if everything went well, should print:
 
 ```bash
-Oracle Client version: 21.6.0
+Oracle Client version: 19.15.0
 ```
 
 Et voilà! :)
