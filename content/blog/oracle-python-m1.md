@@ -68,17 +68,15 @@ It's probably a good idea to update your command prompt to display some kind of
 info about the architecture in order not to get confused when you have two
 terminals looking exactly the same but running two different environments.
 
-I've added the following code to my zsh theme so I can print the arch in my prompt:
+I've added the following code to my zsh theme and included the variable in my
+prompt.
 
 ```bash
-arch_prompt() {
-  if [ $(arch) = "i386" ]; then
-    arch_p="x86"
-  else
-    arch_p="arm"
-  fi
-  echo $arch_p
-}
+if [ $(arch) = "i386" ]; then
+    ARCH_PROMPT="x86"
+else
+    ARCH_PROMPT="arm"
+fi
 ```
 
 Note: you can always launch an x86 shell within your current shell:
