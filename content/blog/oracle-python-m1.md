@@ -68,15 +68,17 @@ It's probably a good idea to update your command prompt to display some kind of
 info about the architecture in order not to get confused when you have two
 terminals looking exactly the same but running two different environments.
 
-I've added the following code to my zsh theme and included the variable in my
-prompt.
+I've added the following code to my zsh theme so I can print the arch in my prompt:
 
 ```bash
-if [ $(arch) = "i386" ]; then
-    ARCH_PROMPT="x86"
-else
-    ARCH_PROMPT="arm"
-fi
+arch_prompt() {
+  if [ $(arch) = "i386" ]; then
+    arch_p="x86"
+  else
+    arch_p="arm"
+  fi
+  echo $arch_p
+}
 ```
 
 Note: you can always launch an x86 shell within your current shell:
@@ -114,16 +116,7 @@ x86 Python with Pyenv
 ---------------------
 
 Now that we have an x86 terminal and a dedicated space for our x86 libraries, we
-need to install the dependencies required to build an x86 CPython interpreter.
-
-
-### Readline & OpenSSL
-
-Using our x86 shell let's install `readline` and `openssl`:
-
-```bash
-brew install readline openssl
-```
+need to build an x86 CPython interpreter. Luckily Pyenv will sort that out for us.
 
 
 ### Pyenv
@@ -140,6 +133,8 @@ brew install pyenv pyenv-virtualenv
 ```
 
 Note: you might need to reload the shell in order for `pyenv-virtualenv` to work.
+Also note: brew will take care of openssl and readline dependencies and install
+their x86 versions in `/usr/local/opt`.
 
 Let's also install [Pyenv Alias](https://github.com/s1341/pyenv-alias) a handy
 Pyenv plugin for naming Python versions, so we can keep arm and x86 Python builds
