@@ -25,14 +25,12 @@ emulated Terminal. That can be achieved by simply &ldquo;right-clicking&rdquo; o
 open the info panel (⌘-I) and select &ldquo;Open Using Rosetta&rdquo; checkbox. Done. Note
 that the same can be done with any other macOS app.</p><p>It&rsquo;s probably a good idea to update your command prompt to display some kind of
 info about the architecture in order not to get confused when you have two
-terminals looking exactly the same but running two different environments.</p><p>I&rsquo;ve added the following code to my zsh theme so I can print the arch in my prompt:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>arch_prompt<span style=color:#000;font-weight:700>()</span> <span style=color:#000;font-weight:700>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#000;font-weight:700>$(</span>arch<span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;i386&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
-</span></span><span style=display:flex><span>    <span style=color:teal>arch_p</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;x86&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#000;font-weight:700>else</span>
-</span></span><span style=display:flex><span>    <span style=color:teal>arch_p</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;arm&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#000;font-weight:700>fi</span>
-</span></span><span style=display:flex><span>  <span style=color:#0086b3>echo</span> <span style=color:teal>$arch_p</span>
-</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>}</span>
+terminals looking exactly the same but running two different environments.</p><p>I&rsquo;ve added the following code to my zsh theme and included the variable in my
+prompt.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#000;font-weight:700>$(</span>arch<span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;i386&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
+</span></span><span style=display:flex><span>    <span style=color:teal>ARCH_PROMPT</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;x86&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>else</span>
+</span></span><span style=display:flex><span>    <span style=color:teal>ARCH_PROMPT</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;arm&#34;</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>fi</span>
 </span></span></code></pre></div><p>Note: you can always launch an x86 shell within your current shell:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>arch -x86_64 zsh
 </span></span></code></pre></div><p>Also note: env will be inherited in the new zsh session. Personally I find it
 safer to keep two separated terminals.</p><h2 id=x86-homebrew class=anchored-heading>x86 Homebrew <a class="anchor js-scroll-trigger" href=#x86-homebrew><i class="fa fa-link anchor-icons"></i></a></h2><p><a href=https://brew.sh/>Mac Homebrew</a> comes very handy for building and managing OSS
