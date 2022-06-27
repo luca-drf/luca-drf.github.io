@@ -1,5 +1,5 @@
 ---
-title: "Oracle Instant Client and Python on M1"
+title: "Oracle Client and Python on Apple M1"
 date: 2022-06-25T14:50:06+01:00
 draft: false
 tags: [python, oracle, arm, apple m1, docker]
@@ -102,10 +102,8 @@ your `.zprofile` (or `.profile`)
 ```bash
 if [ $(arch) = "i386" ]; then
   eval "$(/usr/local/bin/brew shellenv)"
-  alias brew="/usr/local/bin/brew"
 else
   eval "$(/opt/homebrew/bin/brew shellenv)"
-  alias brew="/opt/homebrew/bin/brew"
 fi
 ```
 
@@ -116,13 +114,13 @@ x86 Python with Pyenv
 Now that we have an x86 terminal and a dedicated space for our x86 libraries, we
 need to build an x86 CPython interpreter. Luckily Pyenv will sort that out for us.
 
-
 ### Pyenv
 
-In order to build Python, we're going to use Pyenv (which you should be using
-anyway for managing different Python versions and virtualenvs). Don't worry if
-you already installed an "arm" Pyenv and populated Pyenv's root, the two executables
-won't interfere with each other and can share the same root (e.g. `~/.pyenv`).
+In order to build Python, we're going to use [Pyenv](https://github.com/pyenv/pyenv)
+(which you should be using anyway for managing different Python versions and
+virtualenvs). Don't worry if you already installed an "arm" Pyenv and populated
+Pyenv's root, the two executables won't interfere with each other and can share
+the same root (e.g. `~/.pyenv`).
 
 So using our x86 terminal, let's install Pyenv in the x86 space:
 
@@ -141,7 +139,6 @@ separated under `$(pyenv root)/versions`:
 ```bash
 git clone https://github.com/s1341/pyenv-alias.git $(pyenv root)/plugins/pyenv-alias
 ```
-
 
 ### Python
 
@@ -191,13 +188,13 @@ version 19.8.0.0.0.
 Let's now create a virtualenv for our project:
 
 ```bash
-pyenv virtualenv 3.10.3_x86 my_project_x86
+pyenv virtualenv 3.10.3_x86 oracle_client_app
 ```
 
 And activate it:
 
 ```bash
-pyenv activate my_project_x86
+pyenv activate oracle_client_app
 ```
 
 Install the new [python-oracledb](https://github.com/oracle/python-oracledb)
@@ -233,7 +230,7 @@ The answer is, well, in this case yes!
 
 ### Python Toy App
 
-For the purpose of this guide the app will simply init Oracle Client and then
+For the purpose of this guide the app will simply _init_ Oracle Client and then
 print its version on stdout.
 
 ```python
