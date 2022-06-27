@@ -97,7 +97,7 @@ on macOS. Since Mac Homebrew on arm64 is rooted at `/opt/homebrew` instead of
 from arm64. You just need to launch an x86 shell and simply install Mac Homebrew.
 
 Then, in order to make sure your env is properly set, add the following code to
-your `.zprofile` (or `.profile`)
+your `.zprofile` (or `.profile`):
 
 ```bash
 if [ $(arch) = "i386" ]; then
@@ -283,13 +283,13 @@ Note: at the time of writing, the latest Oracle Client version for Linux64 is 21
 
 ### Build and Run
 
-We can build our x86 image by using Docker's `--platform` flag:
+We can build our x86 image by using Docker's `--platform` parameter:
 
 ```bash
 docker build --platform linux/amd64 -t oracle_client_app
 ```
 
-And then run it using the same flag:
+And then run it using the same parameter:
 
 ```bash
 docker run --platform linux/amd64 oracle_client_app:latest
@@ -313,6 +313,6 @@ separating x86 installations from arm ones, kudos to them.
 Massive kudos to Apple for Rosetta2 and XCode working seamlessly in emulation mode.
 
 And last but not least, it's really nice to see Docker Desktop for macOS
-emulating x86 out of the box on arm.
+emulating x86 out of the box on M1.
 
 Happy coding!
