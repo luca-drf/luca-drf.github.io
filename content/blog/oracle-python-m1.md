@@ -57,11 +57,11 @@ installation to terminate successfully.
 x86 Terminal
 ------------
 
-The Terminal (in my case [iTerm2](https://iterm2.com/)) is my main entry point in
+The Terminal (in my case [iTerm2](https://iterm2.com/)) is my main entry point for
 running software when developing, so with Rosetta2 installed I first need an x86
-emulated Terminal. That can be achieved by simply "right-clicking" on iTerm2 app
+emulated Terminal. That can be achieved by simply "right-clicking" on iTerm2 app,
 "Duplicate" it, rename the copied version "iTerm-x86", then select it and
-open the info panel (⌘-I) and select "Open Using Rosetta" checkbox. Done. Note
+open the info panel (⌘-I), and finally select "Open Using Rosetta" checkbox. Done. Note
 that the same can be done with any other macOS app.
 
 It's probably a good idea to update your command prompt to display some kind of
@@ -84,7 +84,7 @@ Note: you can always launch an x86 shell within your current shell:
 ```bash
 arch -x86_64 zsh
 ```
-Also note: env will be inherited in the new zsh session. Personally I find it
+Also note: the environment will be inherited in the new shell session. Personally I find it
 safer to keep two separated terminals.
 
 
@@ -95,8 +95,10 @@ x86 Homebrew
 on macOS. Since Mac Homebrew on arm64 is rooted at `/opt/homebrew` instead of
 `/usr/local`, it's possible to install x86 software and keep it neatly separated
 from arm64. You just need to launch an x86 shell and simply install Mac Homebrew.
+It will automatically choose its root based on the detected architecture (in our
+case i386).
 
-Then, in order to make sure your env is properly set, add the following code to
+Then, in order to make sure your environment is properly set, add the following code to
 your `.zprofile` (or `.profile`):
 
 ```bash
@@ -117,10 +119,10 @@ need to build an x86 CPython interpreter. Luckily Pyenv will sort that out for u
 ### Pyenv
 
 In order to build Python, we're going to use [Pyenv](https://github.com/pyenv/pyenv)
-(which you should be using anyway for managing different Python versions and
-virtualenvs). Don't worry if you already installed an "arm" Pyenv and populated
-Pyenv's root, the two executables won't interfere with each other and can share
-the same root (e.g. `~/.pyenv`).
+(which you should be using already for managing different Python versions and
+virtualenvs anyway). Don't worry if you already installed an "arm" Pyenv, and
+have already populated Pyenv's root; the two executables won't interfere with
+each other as they can share the same root (e.g. `~/.pyenv`).
 
 So using our x86 terminal, let's install Pyenv in the x86 space:
 
@@ -129,11 +131,11 @@ brew install pyenv pyenv-virtualenv
 ```
 
 Note: you might need to reload the shell in order for `pyenv-virtualenv` to work.
-Also note: brew will take care of openssl and readline dependencies and install
+Also note: brew will take care of openssl and readline dependencies installing
 their x86 versions in `/usr/local/opt`.
 
 Let's also install [Pyenv Alias](https://github.com/s1341/pyenv-alias) a handy
-Pyenv plugin for naming Python versions, so we can keep arm and x86 Python builds
+Pyenv plugin for labelling Python versions, so we can keep arm and x86 Python builds
 separated under `$(pyenv root)/versions`:
 
 ```bash
@@ -143,13 +145,13 @@ git clone https://github.com/s1341/pyenv-alias.git $(pyenv root)/plugins/pyenv-a
 ### Python
 
 Now we can build an x86 Python interpreter using our x86 terminal and Pyenv.
-Also let's give it a custom name, so it won't interfere with other arm versions:
+Also, let's give it a custom name, so it won't interfere with other arm versions:
 
 ```bash
 VERSION_ALIAS="3.10.3_x86" pyenv install 3.10.3
 ```
 
-If everything worked fine you should be able to run a Python REPL and check the
+If everything worked fine, you should be able to run a Python REPL and check the
 interpreter platform using the `platform` module:
 
 ```python
@@ -165,8 +167,8 @@ print `'arm64'`.
 Oracle Instant Client & Python
 ------------------------------
 
-Finally, we have all we need to install Oracle Instant Client and start using it
-with Python.
+Finally, we have all that we need to install Oracle Instant Client, and calling it
+from Python.
 
 So, using our x86 terminal, let's install Oracle Instant Client libraries with
 `brew`. We'll need to add a new tap first:
@@ -175,8 +177,8 @@ So, using our x86 terminal, let's install Oracle Instant Client libraries with
 brew tap InstantClientTap/instantclient
 ```
 
-Then we can install the required libs (in my case I only need the basic-lite
-version).
+Then we can install the required libs (in my case, I only needed the basic-lite
+version):
 
 ```bash
 brew install instantclient-basiclite
@@ -197,14 +199,14 @@ And activate it:
 pyenv activate oracle_client_app
 ```
 
-Install the new [python-oracledb](https://github.com/oracle/python-oracledb)
-which has replaced the previous `cx_Oracle` (although the latter would work as well).
+Let's install the new [python-oracledb](https://github.com/oracle/python-oracledb)
+which has replaced `cx_Oracle` (although the latter would work as well):
 
 ```bash
 pip install oracledb
 ```
 
-Then let's test that Instant Client is correctly loaded. To do that, run a python
+Then test that Instant Client is correctly loaded. To do that, open a python
 REPL and then:
 
 ```python
@@ -222,8 +224,8 @@ Docker
 ------
 
 As the app I was developing was going to be deployed as a Docker container, I
-also wondered if there was an easy way to build an x86 Docker image on my M1 Mac
-and perhaps spin up an x86 container as well, so I could "smoke test it" locally.
+also wondered if there was an easy way to build an x86 Docker image on my M1 Mac;
+and perhaps, spin up an x86 container as well, so I could "smoke test it" locally.
 
 The answer is, well, in this case yes!
 
