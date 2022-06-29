@@ -1,10 +1,10 @@
 ---
-title: "Oracle Client and Python on Apple M1"
+title: "Oracle Client and Python on Apple Silicon"
 date: 2022-06-25T14:50:06+01:00
 draft: false
 tags: [python, oracle, arm, apple m1, docker]
 featured: true
-summary: "Setting up your M1 Mac for linking and running x86 software. Build and run x86 Python natively (and with Docker)"
+summary: "Setting up your Apple Silicon Mac for linking and running x86 software. Build and run x86 Python natively (and with Docker)"
 ---
 
 As a Web back-end developer, in general, I've been quite happy working on an
@@ -43,7 +43,7 @@ Here we go:
 Rosetta2
 --------
 
-A good way to run darwin/x86_64 software on M1 is using [Rosetta2](https://support.apple.com/en-gb/HT211861)
+A good way to run darwin/x86_64 software on Apple Silicon is using [Rosetta2](https://support.apple.com/en-gb/HT211861)
 which is very well integrated in macOS and can be installed by simply:
 
 ```bash
@@ -313,6 +313,6 @@ separating x86 installations from arm ones, kudos to them.
 Massive kudos to Apple for Rosetta2 and XCode working seamlessly in emulation mode.
 
 And last but not least, it's really nice to see Docker Desktop for macOS
-emulating x86 out of the box on M1.
+emulating x86 out of the box on Apple Silicon.
 
 Happy coding!
