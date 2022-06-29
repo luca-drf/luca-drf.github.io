@@ -18,11 +18,11 @@ worked, but all of them involved some hackish setup. In the following guide I&rs
 show my approach in which I tried to be as neat and safe as possible.</p><p>(I&rsquo;m assuming XCode and Command Line Tools are already installed on your System)</p><p>Here we go:</p><h2 id=rosetta2 class=anchored-heading>Rosetta2 <a class="anchor js-scroll-trigger" href=#rosetta2><i class="fa fa-link anchor-icons"></i></a></h2><p>A good way to run darwin/x86_64 software on Apple Silicon is using <a href=https://support.apple.com/en-gb/HT211861>Rosetta2</a>
 which is very well integrated in macOS and can be installed by simply:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>/usr/sbin/softwareupdate --install-rosetta --agree-to-license
 </span></span></code></pre></div><p>You might get a <code>Package Authoring Error</code> message, but that shouldn&rsquo;t prevent the
-installation to terminate successfully.</p><h2 id=x86-terminal class=anchored-heading>x86 Terminal <a class="anchor js-scroll-trigger" href=#x86-terminal><i class="fa fa-link anchor-icons"></i></a></h2><p>The Terminal (in my case <a href=https://iterm2.com/>iTerm2</a>) is my main entry point in
+installation to terminate successfully.</p><h2 id=x86-terminal class=anchored-heading>x86 Terminal <a class="anchor js-scroll-trigger" href=#x86-terminal><i class="fa fa-link anchor-icons"></i></a></h2><p>The Terminal (in my case <a href=https://iterm2.com/>iTerm2</a>) is my main entry point for
 running software when developing, so with Rosetta2 installed I first need an x86
-emulated Terminal. That can be achieved by simply &ldquo;right-clicking&rdquo; on iTerm2 app
+emulated Terminal. That can be achieved by simply &ldquo;right-clicking&rdquo; on iTerm2 app,
 &ldquo;Duplicate&rdquo; it, rename the copied version &ldquo;iTerm-x86&rdquo;, then select it and
-open the info panel (⌘-I) and select &ldquo;Open Using Rosetta&rdquo; checkbox. Done. Note
+open the info panel (⌘-I), and finally select &ldquo;Open Using Rosetta&rdquo; checkbox. Done. Note
 that the same can be done with any other macOS app.</p><p>It&rsquo;s probably a good idea to update your command prompt to display some kind of
 info about the architecture in order not to get confused when you have two
 terminals looking exactly the same but running two different environments.</p><p>I&rsquo;ve added the following code to my zsh theme and included the variable in my
@@ -32,11 +32,13 @@ prompt.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz
 </span></span><span style=display:flex><span>    <span style=color:teal>ARCH_PROMPT</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;arm&#34;</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>fi</span>
 </span></span></code></pre></div><p>Note: you can always launch an x86 shell within your current shell:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>arch -x86_64 zsh
-</span></span></code></pre></div><p>Also note: env will be inherited in the new zsh session. Personally I find it
+</span></span></code></pre></div><p>Also note: the environment will be inherited in the new shell session. Personally I find it
 safer to keep two separated terminals.</p><h2 id=x86-homebrew class=anchored-heading>x86 Homebrew <a class="anchor js-scroll-trigger" href=#x86-homebrew><i class="fa fa-link anchor-icons"></i></a></h2><p><a href=https://brew.sh/>Mac Homebrew</a> comes very handy for building and managing OSS
 on macOS. Since Mac Homebrew on arm64 is rooted at <code>/opt/homebrew</code> instead of
 <code>/usr/local</code>, it&rsquo;s possible to install x86 software and keep it neatly separated
-from arm64. You just need to launch an x86 shell and simply install Mac Homebrew.</p><p>Then, in order to make sure your env is properly set, add the following code to
+from arm64. You just need to launch an x86 shell and simply install Mac Homebrew.
+It will automatically choose its root based on the detected architecture (in our
+case i386).</p><p>Then, in order to make sure your environment is properly set, add the following code to
 your <code>.zprofile</code> (or <code>.profile</code>):</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>[</span> <span style=color:#000;font-weight:700>$(</span>arch<span style=color:#000;font-weight:700>)</span> <span style=color:#000;font-weight:700>=</span> <span style=color:#d14>&#34;i386&#34;</span> <span style=color:#000;font-weight:700>]</span>; <span style=color:#000;font-weight:700>then</span>
 </span></span><span style=display:flex><span>  <span style=color:#0086b3>eval</span> <span style=color:#d14>&#34;</span><span style=color:#000;font-weight:700>$(</span>/usr/local/bin/brew shellenv<span style=color:#000;font-weight:700>)</span><span style=color:#d14>&#34;</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>else</span>
@@ -44,42 +46,42 @@ your <code>.zprofile</code> (or <code>.profile</code>):</p><div class=highlight>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>fi</span>
 </span></span></code></pre></div><h2 id=x86-python-with-pyenv class=anchored-heading>x86 Python with Pyenv <a class="anchor js-scroll-trigger" href=#x86-python-with-pyenv><i class="fa fa-link anchor-icons"></i></a></h2><p>Now that we have an x86 terminal and a dedicated space for our x86 libraries, we
 need to build an x86 CPython interpreter. Luckily Pyenv will sort that out for us.</p><h3 id=pyenv class=anchored-heading>Pyenv <a class="anchor js-scroll-trigger" href=#pyenv><i class="fa fa-link anchor-icons"></i></a></h3><p>In order to build Python, we&rsquo;re going to use <a href=https://github.com/pyenv/pyenv>Pyenv</a>
-(which you should be using anyway for managing different Python versions and
-virtualenvs). Don&rsquo;t worry if you already installed an &ldquo;arm&rdquo; Pyenv and populated
-Pyenv&rsquo;s root, the two executables won&rsquo;t interfere with each other and can share
-the same root (e.g. <code>~/.pyenv</code>).</p><p>So using our x86 terminal, let&rsquo;s install Pyenv in the x86 space:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>brew install pyenv pyenv-virtualenv
+(which you should be using already for managing different Python versions and
+virtualenvs anyway). Don&rsquo;t worry if you already installed an &ldquo;arm&rdquo; Pyenv, and
+have already populated Pyenv&rsquo;s root; the two executables won&rsquo;t interfere with
+each other as they can share the same root (e.g. <code>~/.pyenv</code>).</p><p>So using our x86 terminal, let&rsquo;s install Pyenv in the x86 space:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>brew install pyenv pyenv-virtualenv
 </span></span></code></pre></div><p>Note: you might need to reload the shell in order for <code>pyenv-virtualenv</code> to work.
-Also note: brew will take care of openssl and readline dependencies and install
+Also note: brew will take care of openssl and readline dependencies installing
 their x86 versions in <code>/usr/local/opt</code>.</p><p>Let&rsquo;s also install <a href=https://github.com/s1341/pyenv-alias>Pyenv Alias</a> a handy
-Pyenv plugin for naming Python versions, so we can keep arm and x86 Python builds
+Pyenv plugin for labelling Python versions, so we can keep arm and x86 Python builds
 separated under <code>$(pyenv root)/versions</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/s1341/pyenv-alias.git <span style=color:#000;font-weight:700>$(</span>pyenv root<span style=color:#000;font-weight:700>)</span>/plugins/pyenv-alias
 </span></span></code></pre></div><h3 id=python class=anchored-heading>Python <a class="anchor js-scroll-trigger" href=#python><i class="fa fa-link anchor-icons"></i></a></h3><p>Now we can build an x86 Python interpreter using our x86 terminal and Pyenv.
-Also let&rsquo;s give it a custom name, so it won&rsquo;t interfere with other arm versions:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:teal>VERSION_ALIAS</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;3.10.3_x86&#34;</span> pyenv install 3.10.3
-</span></span></code></pre></div><p>If everything worked fine you should be able to run a Python REPL and check the
+Also, let&rsquo;s give it a custom name, so it won&rsquo;t interfere with other arm versions:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:teal>VERSION_ALIAS</span><span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;3.10.3_x86&#34;</span> pyenv install 3.10.3
+</span></span></code></pre></div><p>If everything worked fine, you should be able to run a Python REPL and check the
 interpreter platform using the <code>platform</code> module:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span> <span style=color:#000;font-weight:700>import</span> <span style=color:#555>platform</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span> platform<span style=color:#000;font-weight:700>.</span>machine()
 </span></span><span style=display:flex><span><span style=color:#d14>&#39;x86_64&#39;</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span>
 </span></span></code></pre></div><p>Note that even when using an x86 terminal, an arm built Python interpreter would
-print <code>'arm64'</code>.</p><h2 id=oracle-instant-client--python class=anchored-heading>Oracle Instant Client & Python <a class="anchor js-scroll-trigger" href=#oracle-instant-client--python><i class="fa fa-link anchor-icons"></i></a></h2><p>Finally, we have all we need to install Oracle Instant Client and start using it
-with Python.</p><p>So, using our x86 terminal, let&rsquo;s install Oracle Instant Client libraries with
+print <code>'arm64'</code>.</p><h2 id=oracle-instant-client--python class=anchored-heading>Oracle Instant Client & Python <a class="anchor js-scroll-trigger" href=#oracle-instant-client--python><i class="fa fa-link anchor-icons"></i></a></h2><p>Finally, we have all that we need to install Oracle Instant Client, and calling it
+from Python.</p><p>So, using our x86 terminal, let&rsquo;s install Oracle Instant Client libraries with
 <code>brew</code>. We&rsquo;ll need to add a new tap first:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>brew tap InstantClientTap/instantclient
-</span></span></code></pre></div><p>Then we can install the required libs (in my case I only need the basic-lite
-version).</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>brew install instantclient-basiclite
+</span></span></code></pre></div><p>Then we can install the required libs (in my case, I only needed the basic-lite
+version):</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>brew install instantclient-basiclite
 </span></span></code></pre></div><p>At the time of writing, the above command should install Instant Client Basic Lite
 version 19.8.0.0.0.</p><p>Let&rsquo;s now create a virtualenv for our project:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pyenv virtualenv 3.10.3_x86 oracle_client_app
 </span></span></code></pre></div><p>And activate it:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pyenv activate oracle_client_app
-</span></span></code></pre></div><p>Install the new <a href=https://github.com/oracle/python-oracledb>python-oracledb</a>
-which has replaced the previous <code>cx_Oracle</code> (although the latter would work as well).</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install oracledb
-</span></span></code></pre></div><p>Then let&rsquo;s test that Instant Client is correctly loaded. To do that, run a python
+</span></span></code></pre></div><p>Let&rsquo;s install the new <a href=https://github.com/oracle/python-oracledb>python-oracledb</a>
+which has replaced <code>cx_Oracle</code> (although the latter would work as well):</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=display:flex><span>pip install oracledb
+</span></span></code></pre></div><p>Then test that Instant Client is correctly loaded. To do that, open a python
 REPL and then:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span> <span style=color:#000;font-weight:700>import</span> <span style=color:#555>oracledb</span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span> oracledb<span style=color:#000;font-weight:700>.</span>init_oracle_client()
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span> oracledb<span style=color:#000;font-weight:700>.</span>clientversion()
 </span></span><span style=display:flex><span>(<span style=color:#099>19</span>, <span style=color:#099>8</span>, <span style=color:#099>0</span>, <span style=color:#099>0</span>, <span style=color:#099>0</span>)
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>&gt;&gt;&gt;</span>
 </span></span></code></pre></div><p>Nice, now we can start developing our app!</p><h2 id=docker class=anchored-heading>Docker <a class="anchor js-scroll-trigger" href=#docker><i class="fa fa-link anchor-icons"></i></a></h2><p>As the app I was developing was going to be deployed as a Docker container, I
-also wondered if there was an easy way to build an x86 Docker image on my M1 Mac
-and perhaps spin up an x86 container as well, so I could &ldquo;smoke test it&rdquo; locally.</p><p>The answer is, well, in this case yes!</p><h3 id=python-toy-app class=anchored-heading>Python Toy App <a class="anchor js-scroll-trigger" href=#python-toy-app><i class="fa fa-link anchor-icons"></i></a></h3><p>For the purpose of this guide the app will simply <em>init</em> Oracle Client and then
+also wondered if there was an easy way to build an x86 Docker image on my M1 Mac;
+and perhaps, spin up an x86 container as well, so I could &ldquo;smoke test it&rdquo; locally.</p><p>The answer is, well, in this case yes!</p><h3 id=python-toy-app class=anchored-heading>Python Toy App <a class="anchor js-scroll-trigger" href=#python-toy-app><i class="fa fa-link anchor-icons"></i></a></h3><p>For the purpose of this guide the app will simply <em>init</em> Oracle Client and then
 print its version on stdout.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#998;font-style:italic># oracle_client_app.py</span>
 </span></span><span style=display:flex><span>
 </span></span><span style=display:flex><span><span style=color:#000;font-weight:700>import</span> <span style=color:#555>oracledb</span>
