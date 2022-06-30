@@ -12,7 +12,7 @@ Apple M1 platform. AArch64 is fairly well-supported and Rosetta2 fills most of
 the gaps left open by the lack of available ARM64 builds.
 
 An example of missing support for darwin/arm64 are Oracle Instant Client libs.
-Luckily there are neat ways around it :)
+Luckily there are neat ways around it 🙂
 
 
 Problem
@@ -303,7 +303,7 @@ Which, if everything went well, should print:
 Oracle Client version: 19.15.0
 ```
 
-Et voilà! :)
+Et voilà! 💁🏻‍♂️
 
 
 Conclusion
