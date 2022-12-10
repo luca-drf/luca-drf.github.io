@@ -1,0 +1,249 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><title>Luca Da Rin Fioretto | Capture Python subprocess output in real time</title><meta property="og:title" content="Luca Da Rin Fioretto | Capture Python subprocess output in real time"><meta property="og:image" content="https://lucadrf.dev/img/daro_profile.png"><meta name=description content><meta property="og:description" content><meta name=author content="Luca Da Rin Fioretto"><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#176d86><meta name=msapplication-TileColor content="#2b5797"><meta name=theme-color content="#ffffff"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css integrity=sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2 crossorigin=anonymous><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Hebrew&family=Open+Sans:wght@600&family=PT+Sans&family=Saira+Extra+Condensed:wght@500;600;700&display=swap" rel=stylesheet><link rel=preload href=https://use.fontawesome.com/releases/v6.1.1/css/all.css as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://use.fontawesome.com/releases/v6.1.1/css/all.css></noscript><link rel=stylesheet href=https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css><link rel=preload href=https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin=anonymous as=style onload='this.onload=null,this.rel="stylesheet"'><noscript><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.5.5/css/simple-line-icons.min.css integrity="sha512-QKC1UZ/ZHNgFzVKSAhV5v5j73eeL9EEN289eKAEFaAjgAiobVAnVv/AGuPbXsKl1dNoel3kNr6PYnSiTzVVBCw==" crossorigin=anonymous></noscript><link rel=stylesheet href=https://lucadrf.dev/css/resume.min.620ca4b022d0576157a0dac61effe466da1c9b440464b3c47ba2ee73a7355da2.css integrity="sha256-YgyksCLQV2FXoNrGHv/kZtocm0QEZLPEe6Luc6c1XaI=" media=screen><link rel=stylesheet href=https://lucadrf.dev/css/tweaks.min.4744a99d58ae4f55deb65e0367b40a39cf0a02e9b0f3fd21b1201e1a63445ce4.css integrity="sha256-R0SpnViuT1Xetl4DZ7QKOc8KAumw8/0hsSAeGmNEXOQ=" media=screen><link rel=stylesheet href=https://lucadrf.dev/css/resume-override.css></head><body id=page-top><nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id=sideNav><a class="navbar-brand js-scroll-trigger" href=#page-top><span class="d-block d-lg-none">Luca Da Rin Fioretto</span>
+<span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-circle mx-auto mb-2" src=/img/daro_profile.png alt></span></a>
+<button class=navbar-toggler type=button data-toggle=collapse data-target=#navbarSupportedContent aria-controls=navbarSupportedContent aria-expanded=false aria-label="Toggle navigation">
+<span class=navbar-toggler-icon></span></button><div class="collapse navbar-collapse" id=navbarSupportedContent><ul class=navbar-nav><li class=nav-item><a class="nav-link js-scroll-trigger" href=/#about data-target=#about>About</a></li><li class=nav-item><a class="nav-link js-scroll-trigger" href=/#skills data-target=#skills>Skills</a></li><li class=nav-item><a class="nav-link js-scroll-trigger" href=/#experience data-target=#experience>Experience</a></li><li class=nav-item><a class="nav-link js-scroll-trigger" href=/#education data-target=#education>Education</a></li><li class=nav-item><a class="nav-link js-scroll-trigger" href=/#blog data-target=#blog>Blog</a></li></ul></div></nav><div class="container-fluid p-0"><nav aria-label=breadcrumb><ol class=breadcrumb><li class=breadcrumb-item><a href=https://lucadrf.dev/>Home</a></li><li class=breadcrumb-item><a href=https://lucadrf.dev/blog/>Blogs</a></li><li class="breadcrumb-item active"><a href=https://lucadrf.dev/blog/python-subprocess-buffers/>Capture Python subprocess output in real time</a></li></ol></nav><section class="resume-section p-3 p-lg-5 d-flex flex-column"><div class=my-auto><div class="mb-3 d-flex flex-row justify-content-between"><h2 class="portfolio mb-0"><span class=text-primary>Capture Python subprocess output in real time</span></h2><span>November 20, 2022</span></div><div class=mb-5><h4>The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real time. Most of them don&rsquo;t work, so here&rsquo;s how to do it.</h4></div><div><h2 id=tldr class=anchored-heading>TL;DR <a class="anchor js-scroll-trigger" href=#tldr><i class="fa fa-link anchor-icons"></i></a></h2><p>Here&rsquo;s how to <em>read</em> and <em>print</em> a subprocess <em>stdout</em> in &ldquo;real-time&rdquo;, or in
+other words, capture the subprocess&rsquo; <em>stdout</em> as soon as bytes are written to it.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#998;font-style:italic># parent_process.py</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>subprocess</span> <span style=color:#000;font-weight:700>import</span> Popen, PIPE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>with</span> Popen([<span style=color:#d14>&#34;python&#34;</span>, <span style=color:#d14>&#34;child_process.py&#34;</span>], stdout<span style=color:#000;font-weight:700>=</span>PIPE) <span style=color:#000;font-weight:700>as</span> p:
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>        <span style=color:#998;font-style:italic># Use read1() instead of read() or Popen.communicate() as both blocks until EOF</span>
+</span></span><span style=display:flex><span>        <span style=color:#998;font-style:italic># https://docs.python.org/3/library/io.html#io.BufferedIOBase.read1</span>
+</span></span><span style=display:flex><span>        text <span style=color:#000;font-weight:700>=</span> p<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>read1()<span style=color:#000;font-weight:700>.</span>decode(<span style=color:#d14>&#34;utf-8&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#0086b3>print</span>(text, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;&#39;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#998;font-style:italic># child_process.py</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>time</span> <span style=color:#000;font-weight:700>import</span> sleep
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>    <span style=color:#998;font-style:italic># Make sure stdout writes are flushed to the stream</span>
+</span></span><span style=display:flex><span>    <span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Spam!&#34;</span>, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39; &#39;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span><span style=display:flex><span>    <span style=color:#998;font-style:italic># Sleep to simulate some other work</span>
+</span></span><span style=display:flex><span>    sleep(<span style=color:#099>1</span>)
+</span></span></code></pre></div><p>If you&rsquo;d like to learn more about Python&rsquo;s I/O, buffers configuration, and a
+real life problem that inspired this blog post, keep reading :)</p><h2 id=problem class=anchored-heading>Problem <a class="anchor js-scroll-trigger" href=#problem><i class="fa fa-link anchor-icons"></i></a></h2><p>On a group chat, a colleague of mine asked an interesting question:</p><blockquote><p>I have a script that opens a program with Popen. stdout is redirected to a
+PIPE. The script reads few lines on stdout to discover how to connect to the
+program using a socket. Unfortunately, at some point later the stdout pipe
+gets full as it isn&rsquo;t read, and it blocks the subprocess.</p></blockquote><p>That behaviour is expected, in fact, it&rsquo;s mentioned in Python&rsquo;s subprocess docs
+for <a href=https://docs.python.org/3/library/subprocess.html#subprocess.Popen.wait><code>Popen.wait</code></a></p><blockquote><p>This will deadlock when using stdout=PIPE or stderr=PIPE and the child process
+generates enough output to a pipe such that it blocks waiting for the OS pipe
+buffer to accept more data.</p></blockquote><p>(Note: I have omitted the last sentence about <code>Popen.communicate</code> as it&rsquo;s not
+relevant for our case, I&rsquo;ll go back to it in more detail later.)</p><p>So, how can we read the first few lines written by a subprocess on its <em>stdout</em>,
+save them and throw away the rest while the subprocess is running and writing
+without stopping it?</p><p><strong>TL;DR</strong> (part 2), take me to the <a href=#another-better-solution>solution</a></p><h2 id=a-solution class=anchored-heading>A solution <a class="anchor js-scroll-trigger" href=#a-solution><i class="fa fa-link anchor-icons"></i></a></h2><h3 id=use-a-text-file-instead-of-a-pipe class=anchored-heading>Use a text file instead of a pipe <a class="anchor js-scroll-trigger" href=#use-a-text-file-instead-of-a-pipe><i class="fa fa-link anchor-icons"></i></a></h3><p>We could redirect our subprocess <em>stdout</em> to a file instead of a pipe, read the
+first few lines and forget about the rest until the subprocess terminate and
+then delete the file.</p><p>That would possibly look something like this:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>subprocess</span> <span style=color:#000;font-weight:700>import</span> Popen
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>time</span> <span style=color:#000;font-weight:700>import</span> sleep
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>max_lines_to_read <span style=color:#000;font-weight:700>=</span> <span style=color:#099>10</span>
+</span></span><span style=display:flex><span>lines_read <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>with</span> <span style=color:#0086b3>open</span>(<span style=color:#d14>&#34;my_command.out&#34;</span>, <span style=color:#d14>&#34;w&#34;</span>) <span style=color:#000;font-weight:700>as</span> subprocess_out:
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>with</span> Popen([<span style=color:#d14>&#34;my_command&#34;</span>], stdout<span style=color:#000;font-weight:700>=</span>subprocess_out) <span style=color:#000;font-weight:700>as</span> process:
+</span></span><span style=display:flex><span>        <span style=color:#000;font-weight:700>with</span> <span style=color:#0086b3>open</span>(<span style=color:#d14>&#34;my_command.out&#34;</span>, <span style=color:#d14>&#34;r&#34;</span>) <span style=color:#000;font-weight:700>as</span> subprocess_in:
+</span></span><span style=display:flex><span>            <span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>                text <span style=color:#000;font-weight:700>=</span> subprocess_in<span style=color:#000;font-weight:700>.</span>read()
+</span></span><span style=display:flex><span>                <span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>not</span> text:
+</span></span><span style=display:flex><span>                    sleep(<span style=color:#099>1</span>)
+</span></span><span style=display:flex><span>                    <span style=color:#000;font-weight:700>continue</span>
+</span></span><span style=display:flex><span>                <span style=color:#000;font-weight:700>if</span> lines_read <span style=color:#000;font-weight:700>&lt;</span> max_lines_to_read:
+</span></span><span style=display:flex><span>                    <span style=color:#000;font-weight:700>if</span> text<span style=color:#000;font-weight:700>.</span>endswith(<span style=color:#d14>&#34;</span><span style=color:#d14>\n</span><span style=color:#d14>&#34;</span>):
+</span></span><span style=display:flex><span>                        <span style=color:#998;font-style:italic># TODO: Store or use the whole line</span>
+</span></span><span style=display:flex><span>                        lines_read <span style=color:#000;font-weight:700>+=</span> <span style=color:#099>1</span>
+</span></span><span style=display:flex><span>                <span style=color:#000;font-weight:700>else</span>:
+</span></span><span style=display:flex><span>                    <span style=color:#000;font-weight:700>break</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#998;font-style:italic># TODO: Write the rest of the logic here and terminate `process` if needed</span>
+</span></span></code></pre></div><p><strong>Note</strong>: I didn&rsquo;t use <code>readline()</code> or <code>readlines()</code> because they would behave
+just like <code>read()</code> if our subprocess doesn&rsquo;t terminate each <em>write</em> with a <em>new
+line</em> (i.e. use one <em>write</em> per line) so it&rsquo;s less confusing to simply use
+<code>read()</code> and look for <code>\n</code> ourselves.</p><p>This solution works, but if we&rsquo;re only interested in few lines there&rsquo;s really
+no point in having that file on disk, what if it ends up being several gigabytes
+and the subprocess having to run for days? You don&rsquo;t want to be that person who
+forced IT to impose stricter quotas on your VMs mounts, do you? 😉</p><p>No, we&rsquo;re dealing with a stream of data, and we should be coding accordingly.</p><p>So, how can we stream the output of a subprocess as it gets generated, rather
+than waiting for it to terminate and print it all?</p><h3 id=what-does-the-official-python-documentation-suggest class=anchored-heading>What does the official Python documentation suggest? <a class="anchor js-scroll-trigger" href=#what-does-the-official-python-documentation-suggest><i class="fa fa-link anchor-icons"></i></a></h3><p>If we read Python&rsquo;s official documentation (as all good Pythonistas always do)
+for <a href=https://docs.python.org/3/library/subprocess.html>subprocess module</a>,
+we&rsquo;re strongly encouraged to use <code>Popen.communicate()</code> for writing/reading
+piped subprocesses STDIN/STDOUT. That doesn&rsquo;t quite work the way we expect
+though, in fact <code>communicate()</code> seems to be blocking and even calling it with a
+timeout <code>communicate(timeout=2)</code> doesn&rsquo;t seem to work as bytes aren&rsquo;t returned
+while the pipe is open and being written. Bummer.</p><p>Unfortunately Python&rsquo;s official documentation doesn&rsquo;t offer any alternative
+solution, &ldquo;There should be one &ndash; and preferably only one &ndash; obvious way to do
+it.&rdquo; the Zen of Python says, although using <code>Popen.communicate()</code> to read the
+<em>stdout</em> of a piped subprocess is all but obvious. Sorry Zen of Python and
+official docs, but we have to find another way.</p><h2 id=python-buffers-and-io class=anchored-heading>Python buffers and I/O <a class="anchor js-scroll-trigger" href=#python-buffers-and-io><i class="fa fa-link anchor-icons"></i></a></h2><p>While trying to figure out why <code>Popen.communicate()</code> didn&rsquo;t work as expected
+I&rsquo;ve refreshed my knowledge on POSIX pipes and buffering strategies in <em>libc</em>.
+There are essentially three kinds of streams:</p><ul><li>Unbuffered (characters are transmitted individually, as soon as possible)</li><li>Line buffered (characters are transmitted in blocks, when <em>new line</em> is encountered)</li><li>Fully buffered (characters are transmitted in blocks of arbitrary size)</li></ul><p>See <a href=https://www.gnu.org/software/libc/manual/html_node/Buffering-Concepts.html>GNU Buffering Concepts</a>.</p><p>Typically, POSIX pipes are <em>fully buffered</em> streams, while streams attached to a
+TTY are usually <em>line buffered</em>. It&rsquo;s important to remember that, especially
+when redirecting <em>stdout</em> to a pipe or a file (instead of a terminal).</p><p>Python follows the same strategies when implementing its buffers, and it&rsquo;s also
+worth remembering that an extra layer of internal buffering might occur on both
+reads and writes.</p><p>Lastly, it&rsquo;s important to remember that <em>stdout</em> streams in Python can be
+handled by different <code>io</code> classes, depending on the type of stream/buffering
+strategy.</p><h3 id=line-buffered-streams-tty class=anchored-heading>Line buffered streams (TTY) <a class="anchor js-scroll-trigger" href=#line-buffered-streams-tty><i class="fa fa-link anchor-icons"></i></a></h3><p>Consider the following program, I&rsquo;ve called it <code>spam_one_line.py</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#998;font-style:italic># spam_one_line.py</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>import</span> <span style=color:#555>sys</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>time</span> <span style=color:#000;font-weight:700>import</span> sleep
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>for</span> _ <span style=color:#000;font-weight:700>in</span> <span style=color:#0086b3>range</span>(<span style=color:#099>8</span>):
+</span></span><span style=display:flex><span>    <span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Spam!&#34;</span>, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39; &#39;</span>)  <span style=color:#998;font-style:italic># Printed string ends with a space instead of the default</span>
+</span></span><span style=display:flex><span>    sleep(<span style=color:#099>1</span>)
+</span></span><span style=display:flex><span><span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Lovely Spam! Wonderful Spam!&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Line written&#34;</span>, file<span style=color:#000;font-weight:700>=</span>sys<span style=color:#000;font-weight:700>.</span>stderr)
+</span></span></code></pre></div><p>What do you think the output of this program will be on your terminal? Or more
+importantly, <strong>when</strong> do you think those characters will appear?</p><p><strong>Spoiler alert</strong>: two lines will appear at the same time:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback><span style=display:flex><span>Spam! Spam! Spam! Spam! Spam! Spam! Spam! Spam! Lovely Spam! Wonderful Spam!
+</span></span><span style=display:flex><span>Line written
+</span></span></code></pre></div><p>That&rsquo;s because <em>stdout</em> and <em>stderr</em> are both attached to a TTY and that by
+default means <code>sys.stdout</code> and <code>sys.stderr</code> are instances of
+<a href=https://docs.python.org/3/library/io.html#io.TextIOWrapper><code>io.TextIOWrapper</code></a>
+(which is the same type of instance that is returned by <code>open()</code> when opening a
+text file) but with <code>line_buffering=True</code>. Hence, characters are <em>flushed</em> onto
+the underlying binary buffer when <em>new line</em> is encountered.</p><p>It&rsquo;s easy to check whether a stream is attached to a TTY as <code>io.IOBase</code> class
+implements <code>isatty()</code> method that can be invoked on all its subclasses; in this
+case <code>sys.stdout.isatty() == True</code>.</p><p>So what if we want to &ldquo;print immediately&rdquo; on <em>stdout</em>? Well, one way to do it
+is to call <code>print()</code> with <code>flush=True</code>:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Spam!&#34;</span>, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39; &#39;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span></code></pre></div><p>From Python 3.7 onwards, another way is to <em>reconfigure</em> <code>sys.stdout</code> to disable
+the interpreter&rsquo;s buffer and transmit all the subsequent writes to the system
+buffer:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>sys<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>reconfigure(write_through<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span></code></pre></div><h3 id=fully-buffered-streams-pipe class=anchored-heading>Fully buffered streams (pipe) <a class="anchor js-scroll-trigger" href=#fully-buffered-streams-pipe><i class="fa fa-link anchor-icons"></i></a></h3><p>What buffering strategy and what type of stream is Python implementing when a
+Python process is invoked using <code>subprocess.Popen</code> and its <em>stdout</em> is
+redirected to a pipe instead of being attached to a TTY?</p><p>Let&rsquo;s first refresh what a pipe is and how it works:</p><p>In very simple terms, a pipe is a mechanism for multi-process communication
+provided by the OS. It has two separate ends, a <em>writing</em> and a <em>reading</em> one.
+The data is handled in a first-in, first-out (FIFO) order.</p><p>So when we call <code>subprocess.Popen</code> and redirect the subprocess&rsquo; <em>stdout</em> to a
+pipe, <code>Popen</code> first creates the pipe, which means creating the two ends as two
+separate binary file descriptors pointing to the same file (one in reading mode
+and one in writing mode); then <em>forks</em> the calling process (creating a child
+process which will share both file descriptors), redirect the child process
+<em>stdout</em> to the file descriptor pointing at the writing end of the pipe, and
+finally <em>exec</em> the program that should run as the child process.</p><p>For more info see <em>libc&rsquo;s</em>
+<a href=https://www.gnu.org/software/libc/manual/html_node/Pipes-and-FIFOs.html>Pipes and FIFOs</a>,
+<a href=https://www.gnu.org/software/libc/manual/html_node/Creating-a-Pipe.html>Creating a pipe</a> and
+<a href=https://www.gnu.org/software/libc/manual/html_node/Pipe-Atomicity.html>Pipe atomicity</a>
+documentation.</p><p>So for example if we instantiate a <code>process</code> object as:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>with</span> subprocess<span style=color:#000;font-weight:700>.</span>Popen([<span style=color:#d14>&#34;my_command&#34;</span>], stdout<span style=color:#000;font-weight:700>=</span>subprocess<span style=color:#000;font-weight:700>.</span>PIPE) <span style=color:#000;font-weight:700>as</span> process:
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>...</span>
+</span></span></code></pre></div><p>Then <code>process.stdout</code> will hold the <em>reading</em> end of the pipe while (assuming
+&ldquo;my_command&rdquo; is another Python program) the child process&rsquo; <code>sys.stdout</code> will
+hold the <em>writing</em> end.</p><p>It&rsquo;s important to notice that the <em>reading</em> end is handled by an instance of
+<a href=https://docs.python.org/3/library/io.html#io.BufferedReader><code>io.BufferedReader</code></a>
+as it&rsquo;s open in binary reading mode while the <em>writing</em> end will still be
+handled by an instance of <code>io.TextIOWrapper</code> (again, assuming the child process
+runs a Python program) but in this case both <code>sys.stdout.isatty()</code> and
+<code>sys.stdout.line_buffering</code> will evaluate to <code>False</code>.</p><h3 id=configuring-a-subprocess-piped-stdout class=anchored-heading>Configuring a subprocess piped STDOUT <a class="anchor js-scroll-trigger" href=#configuring-a-subprocess-piped-stdout><i class="fa fa-link anchor-icons"></i></a></h3><p>Okay, so, using a <code>io.BufferedReader</code> instance in our use case isn&rsquo;t great,
+because we basically want to read lines from <em>stdout</em> as if it was attached to a
+TTY. So, is there a way to reconfigure our piped subprocess <em>stdout</em> buffering
+strategy? Luckily, this time, the answer can be found by reading
+<a href=https://docs.python.org/3/library/subprocess.html#subprocess.Popen>Popen docs</a>
+and its many, many options; in fact, setting <code>bufsize=1</code> and
+<code>universal_newlines=True</code> when invoking <code>Popen</code>, will change the <em>reading</em> end
+of our pipe&rsquo;s type to <code>io.TextIOWrapper</code> and the underlying buffer will be line
+buffered. Note that the wrapper&rsquo;s buffer on top of the binary one, instead, will have
+<code>line_buffering=False</code> (which is a bit confusing but coherent).</p><p>So, having <code>io.TextIOWrapper</code> instead of <code>io.BufferedReader</code> as our <em>reading</em>
+end, make <code>Popen.communicate()</code> non-blocking and behave as we expect? Sadly, no.
+But, we can read directly from the <code>stdout</code> stream of our subprocess, remember?
+And since our <em>reading</em> end (<code>process.stdout</code>) is an instance of
+<code>io.TextIOWrapper</code> and the buffering strategy is <em>line buffered</em> we can call
+<code>readline()</code> on it and expect it to block until a full line is available on the
+buffer and return it.</p><p>So now we should have all what we need to solve our initial problem in a better
+way.</p><h2 id=another-but-better-solution class=anchored-heading>Another (but better) solution <a class="anchor js-scroll-trigger" href=#another-but-better-solution><i class="fa fa-link anchor-icons"></i></a></h2><p>Instead of dumping our subprocess output to a file, reading the first few lines
+and forgetting about the following ones; we could consume the subprocess&rsquo; output
+in a separate thread, send the first few lines to the parent process using a
+queue and then continue to consume the rest of the output in the thread (and
+discarding it). This way we&rsquo;d use only the memory we need.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>subprocess</span> <span style=color:#000;font-weight:700>import</span> Popen, PIPE
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>threading</span> <span style=color:#000;font-weight:700>import</span> Thread
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>queue</span> <span style=color:#000;font-weight:700>import</span> SimpleQueue
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>def</span> <span style=color:#900;font-weight:700>consume_output</span>(p, q, max_lines):
+</span></span><span style=display:flex><span>    line_count <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>while</span> p<span style=color:#000;font-weight:700>.</span>poll() <span style=color:#000;font-weight:700>is</span> <span style=color:#000;font-weight:700>None</span>:
+</span></span><span style=display:flex><span>        line <span style=color:#000;font-weight:700>=</span> p<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>readline()
+</span></span><span style=display:flex><span>        <span style=color:#000;font-weight:700>if</span> line_count <span style=color:#000;font-weight:700>&lt;</span> max_lines:
+</span></span><span style=display:flex><span>            q<span style=color:#000;font-weight:700>.</span>put(line)
+</span></span><span style=display:flex><span>            line_count <span style=color:#000;font-weight:700>+=</span> <span style=color:#099>1</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>def</span> <span style=color:#900;font-weight:700>main</span>(max_lines):
+</span></span><span style=display:flex><span>    program_output <span style=color:#000;font-weight:700>=</span> []
+</span></span><span style=display:flex><span>    line_count <span style=color:#000;font-weight:700>=</span> <span style=color:#099>0</span>
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>with</span> Popen([<span style=color:#d14>&#34;my_command&#34;</span>], stdout<span style=color:#000;font-weight:700>=</span>PIPE, bufsize<span style=color:#000;font-weight:700>=</span><span style=color:#099>1</span>, universal_newlines<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>) <span style=color:#000;font-weight:700>as</span> p:
+</span></span><span style=display:flex><span>        q <span style=color:#000;font-weight:700>=</span> SimpleQueue()
+</span></span><span style=display:flex><span>        t <span style=color:#000;font-weight:700>=</span> Thread(target<span style=color:#000;font-weight:700>=</span>consume_output, args<span style=color:#000;font-weight:700>=</span>(p, q, max_lines))
+</span></span><span style=display:flex><span>        t<span style=color:#000;font-weight:700>.</span>start()
+</span></span><span style=display:flex><span>        <span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>            line <span style=color:#000;font-weight:700>=</span> q<span style=color:#000;font-weight:700>.</span>get()
+</span></span><span style=display:flex><span>            program_output<span style=color:#000;font-weight:700>.</span>append(line)
+</span></span><span style=display:flex><span>            line_count <span style=color:#000;font-weight:700>+=</span> <span style=color:#099>1</span>
+</span></span><span style=display:flex><span>            <span style=color:#000;font-weight:700>if</span> line_count <span style=color:#000;font-weight:700>==</span> max_lines:
+</span></span><span style=display:flex><span>                <span style=color:#000;font-weight:700>break</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        <span style=color:#998;font-style:italic># TODO: Write the rest of the logic here and do what you need with `program_output`</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>        p<span style=color:#000;font-weight:700>.</span>terminate()
+</span></span><span style=display:flex><span>        t<span style=color:#000;font-weight:700>.</span>join()  <span style=color:#998;font-style:italic># Blocks until t terminates</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>if</span> __name__ <span style=color:#000;font-weight:700>==</span> <span style=color:#d14>&#34;__main__&#34;</span>:
+</span></span><span style=display:flex><span>    main(max_lines<span style=color:#000;font-weight:700>=</span><span style=color:#099>2</span>)
+</span></span></code></pre></div><p>Note: we&rsquo;re using
+<a href=https://docs.python.org/3/library/subprocess.html#subprocess.Popen.poll><code>Popen.poll()</code></a>
+to check whether the child process is running or has terminated, in case it has
+been terminated, the thread shall also terminate.</p><p>Also note that if &ldquo;my_command&rdquo; is a Python program as well, you&rsquo;ll have to remember
+to flush prints that you want to transmit immediately, because since <code>sys.stdout</code>
+has been redirected to a pipe then <code>sys.stdout.line_buffering == False</code> and the
+buffer will be flushed only when the underlying binary buffer is full.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#998;font-style:italic># spam_many_lines.py</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>import</span> <span style=color:#555>sys</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>time</span> <span style=color:#000;font-weight:700>import</span> sleep
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>for</span> _ <span style=color:#000;font-weight:700>in</span> <span style=color:#0086b3>range</span>(<span style=color:#099>8</span>):
+</span></span><span style=display:flex><span>        <span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Spam!&#34;</span>, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39; &#39;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span><span style=display:flex><span>        sleep(<span style=color:#099>1</span>)
+</span></span><span style=display:flex><span>    <span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Lovely Spam! Wonderful Spam!&#34;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span><span style=display:flex><span>    <span style=color:#0086b3>print</span>(<span style=color:#d14>&#34;Line written&#34;</span>, file<span style=color:#000;font-weight:700>=</span>sys<span style=color:#000;font-weight:700>.</span>stderr)
+</span></span></code></pre></div><p>Problem solved.</p><p>That&rsquo;s great, but the title of this blog post mentions capturing output in &ldquo;real
+time&rdquo;; so what if the child process doesn&rsquo;t atomically writes full lines? For
+example, what if we want to capture the output of one of those command line
+programs that print their progress on one line (e.g. with a progress-bar)? In
+that case reading line-by-line wouldn&rsquo;t be of much use.</p><h2 id=real-time-output class=anchored-heading>Real-Time output <a class="anchor js-scroll-trigger" href=#real-time-output><i class="fa fa-link anchor-icons"></i></a></h2><p>In an earlier <a href=#fully-buffered-streams-pipe>section</a>, we talked about our
+subprocess piped <em>stdout</em> being handled by a <code>io.BufferedReader</code> instance; that
+is the default mode <code>subprocess.Popen</code> instantiates our <code>process.stdout</code>.</p><p>By default, <code>io.BufferedReader</code>, handles a fully buffered, binary stream, and
+implements a <code>read()</code> method, although that blocks until EOF if
+called with a negative o no parameter, otherwise if called with a positive
+integer <code>n</code> will block until <code>n</code> bytes are read.</p><p>I must say, <code>io.BufferedReader.read()</code> behaviour is not very clear from the
+official Python documentation in my opinion especially because other read
+methods like <code>io.TextIOWrapper.read()</code> or <code>os.read()</code> return &ldquo;up to&rdquo; <code>n</code> bytes
+when called with a positive integer, which means they won&rsquo;t block.</p><p>So, is there a way to read bytes from a binary buffer as soon as they&rsquo;re
+written, without having to wait for EOF (hence before the writing process closes
+the pipe), and without having to read byte by byte with <code>read(1)</code> (which is not
+very efficient)?</p><p>Luckily, that can be achieved by using a different <em>read</em> method:
+<code>io.BufferedReader.read1()</code> (even though, again, the official Python
+documentation is not super clear).</p><p>Another option would be calling <code>os.read()</code> passing the subprocess&rsquo; <em>stdout</em> file
+descriptor and a positive <code>n</code> in order to read at most <code>n</code> bytes per call.</p><p>Let&rsquo;s write a simple program that just reads the subprocess <em>stdout</em> and prints
+it in real-time:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>import</span> <span style=color:#555>sys</span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>from</span> <span style=color:#555>subprocess</span> <span style=color:#000;font-weight:700>import</span> Popen, PIPE
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#000;font-weight:700>with</span> Popen([<span style=color:#d14>&#34;my_command&#34;</span>], stdout<span style=color:#000;font-weight:700>=</span>PIPE) <span style=color:#000;font-weight:700>as</span> p:
+</span></span><span style=display:flex><span>    <span style=color:#000;font-weight:700>while</span> <span style=color:#000;font-weight:700>True</span>:
+</span></span><span style=display:flex><span>        text <span style=color:#000;font-weight:700>=</span> p<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>read1()<span style=color:#000;font-weight:700>.</span>decode(<span style=color:#d14>&#34;utf-8&#34;</span>)
+</span></span><span style=display:flex><span>        <span style=color:#0086b3>print</span>(text, end<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#39;&#39;</span>, flush<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>)
+</span></span><span style=display:flex><span>        <span style=color:#998;font-style:italic># TODO: Write the rest of the logic here and terminate `process` if needed</span>
+</span></span></code></pre></div><p>That&rsquo;s it!</p><p>Note that, alternatively, you could have also used <code>os.read()</code> in case you
+wanted to read up to a fixed number of bytes, so you could have rewritten the
+read line as:</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span>text <span style=color:#000;font-weight:700>=</span> os<span style=color:#000;font-weight:700>.</span>read(p<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>fileno(), <span style=color:#099>1024</span>)<span style=color:#000;font-weight:700>.</span>decode(<span style=color:#d14>&#34;utf-8&#34;</span>)
+</span></span></code></pre></div><p>(Obviously you&rsquo;d have to <code>import os</code> for that)</p><h2 id=more-on-python-buffers class=anchored-heading>More on Python buffers <a class="anchor js-scroll-trigger" href=#more-on-python-buffers><i class="fa fa-link anchor-icons"></i></a></h2><p>The default buffer size of all concrete <code>io.Buffered*</code> classes is
+<code>io.DEFAULT_BUFFER_SIZE</code> which is platform dependant.</p><p>In case you wanted to change buffer strategy for <em>stdout</em> stream, you can
+re-initialise it. For example, in the above <code>spam_many_lines.py</code> you might want
+to set custom buffer settings in case <em>stdout</em> is not attached to a TTY, but
+keep default settings otherwise (and/or not want to pass <code>flush=True</code> to all
+<code>print()</code> functions).</p><p>So you could first check if <code>sys.stdout</code> is attached to a TTY, then disable
+<code>io.TextIOWrapper</code> buffer and instead set a custom buffer size for the underlying
+binary buffer.</p><div class=highlight><pre tabindex=0 style=background-color:#fff;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#000;font-weight:700>if</span> <span style=color:#000;font-weight:700>not</span> sys<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>isatty():
+</span></span><span style=display:flex><span>    buff_size <span style=color:#000;font-weight:700>=</span> <span style=color:#099>8</span>
+</span></span><span style=display:flex><span>    sys<span style=color:#000;font-weight:700>.</span>stdout <span style=color:#000;font-weight:700>=</span> io<span style=color:#000;font-weight:700>.</span>TextIOWrapper(
+</span></span><span style=display:flex><span>        <span style=color:#0086b3>open</span>(sys<span style=color:#000;font-weight:700>.</span>stdout<span style=color:#000;font-weight:700>.</span>fileno(), <span style=color:#d14>&#39;wb&#39;</span>, buff_size),
+</span></span><span style=display:flex><span>        write_through<span style=color:#000;font-weight:700>=</span><span style=color:#000;font-weight:700>True</span>,
+</span></span><span style=display:flex><span>        encoding<span style=color:#000;font-weight:700>=</span><span style=color:#d14>&#34;utf-8&#34;</span>
+</span></span><span style=display:flex><span>    )
+</span></span></code></pre></div><p>Note, <em>stdout</em> buffer will be automatically flushed after 8 bytes have been
+written.</p><p>And that&rsquo;s all I&rsquo;ve got on Python buffers for now.</p><p>If you made it here, give yourself a pat on the back and see you soon!</p></div></div></section><span style=color:#999;font-size:60%>Copyright &copy; 2022 Luca Da Rin Fioretto.</span>
+<span style=color:#999;font-size:60%>Based on <a href=https://github.com/eddiewebb/hugo-resume>hugo-resume</a> theme and generated with <a href=https://gohugo.io/>HUGO</a></span></div><script src=https://code.jquery.com/jquery-3.6.0.min.js integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin=anonymous></script><script src=https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js integrity=sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx crossorigin=anonymous></script>
+<script async src=https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin=anonymous></script>
+<script async src=https://lucadrf.dev/js/resume.min.js></script></body></html>
