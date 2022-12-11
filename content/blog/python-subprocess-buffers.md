@@ -1,10 +1,10 @@
 ---
-title: "Capture Python subprocess output in real time"
+title: "Capture Python subprocess output in real-time"
 date: 2022-11-20T17:49:41Z
 draft: false
-tags: [python subprocess pipe buffers unix]
+tags: [python, subprocess, pipe, unix]
 featured: true
-summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real time. Most of them don't work, so here's how to do it."
+summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it."
 ---
 
 TL;DR
@@ -220,7 +220,7 @@ redirected to a pipe instead of being attached to a TTY?
 
 Let's first refresh what a pipe is and how it works:
 
-In very simple terms, a pipe is a mechanism for multi-process communication
+In very simple terms, a pipe is a mechanism for multiprocess communication
 provided by the OS. It has two separate ends, a _writing_ and a _reading_ one.
 The data is handled in a first-in, first-out (FIFO) order.
 
