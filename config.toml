@@ -3,6 +3,7 @@ baseURL = "https://lucadrf.dev/"
 theme = "hugo-resume"
 languageCode = "en-us"
 enableGitInfo = false
+enableRobotsTXT = true
 
 [markup]
   [markup.highlight]
@@ -77,3 +78,8 @@ home = ["HTML", "JSON"]
 
 [taxonomies]
 tag = "tags"
+
+[sitemap]
+changefreq = "monthly"
+filename = "sitemap.xml"
+priority = 0.5
