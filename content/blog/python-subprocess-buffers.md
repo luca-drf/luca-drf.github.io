@@ -2,7 +2,7 @@
 title: "Capture Python subprocess output in real-time"
 date: 2022-11-20T17:49:41Z
 draft: false
-tags: [python, subprocess, pipe, unix]
+tags: [python, subprocess, unix]
 featured: true
 summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it."
 ---
@@ -49,7 +49,7 @@ On a group chat, a colleague of mine asked an interesting question:
 > gets full as it isn't read, and it blocks the subprocess.
 
 That behaviour is expected, in fact, it's mentioned in Python's subprocess docs
-for [`Popen.wait`](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.wait)
+for [`Popen.wait()`](https://docs.python.org/3/library/subprocess.html#subprocess.Popen.wait)
 
 > This will deadlock when using stdout=PIPE or stderr=PIPE and the child process
 > generates enough output to a pipe such that it blocks waiting for the OS pipe
