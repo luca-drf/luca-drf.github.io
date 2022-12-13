@@ -5,6 +5,7 @@ languageCode = "en-us"
 enableGitInfo = false
 enableRobotsTXT = true
 
+
 [markup]
   [markup.highlight]
     anchorLineNos = false
@@ -40,6 +41,7 @@ showPublications = false
 showQr = false
 showSkills = true
 showCertifications = false
+googleSiteVerification = "xetOSgBfIdaeBqM4aMPpxQJzsVP7a--l6tfp-hMo8T0"
 
 [privacy]
   [privacy.disqus]
