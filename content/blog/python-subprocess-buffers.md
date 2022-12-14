@@ -4,6 +4,8 @@ date: 2022-11-20T17:49:41Z
 draft: false
 tags: [python, subprocess, unix]
 featured: true
+image: "https://i.ibb.co/QDGLbd2/jake-walker-MPKQi-Dp-Myq-U-unsplash-resized.jpg"
+alt: "Generic linux console output"
 summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it."
 ---
 
@@ -42,7 +44,8 @@ real life problem that inspired this blog post, keep reading :)
 Problem
 -------
 
-On a group chat, a colleague of mine asked an interesting question:
+On a Python group chat I've read an interesting question, I'm reporting an
+edited version below:
 > I have a script that opens a program with Popen. stdout is redirected to a
 > PIPE. The script reads few lines on stdout to discover how to connect to the
 > program using a socket. Unfortunately, at some point later the stdout pipe
@@ -55,7 +58,7 @@ for [`Popen.wait()`](https://docs.python.org/3/library/subprocess.html#subproces
 > generates enough output to a pipe such that it blocks waiting for the OS pipe
 > buffer to accept more data.
 
-(Note: I have omitted the last sentence about `Popen.communicate` as it's not
+(Note: I have omitted the last sentence about `Popen.communicate()` as it's not
 relevant for our case, I'll go back to it in more detail later.)
 
 So, how can we read the first few lines written by a subprocess on its _stdout_,

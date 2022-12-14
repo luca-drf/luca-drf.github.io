@@ -4,6 +4,8 @@ date: 2022-12-10T15:27:25Z
 draft: false
 tags: [python, arm, manylinux, microsoft, azure]
 featured: true
+image: "https://i.ibb.co/XXQxrhs/sujith-devanagari-ksb4-BNq5nfg-unsplash.jpg"
+alt: "Old cart wheel"
 summary: "Build Microsoft uAMQP Python package painlessly with Manylinux docker image"
 ---
 
