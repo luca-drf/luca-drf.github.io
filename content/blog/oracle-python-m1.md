@@ -7,6 +7,7 @@ featured: true
 image: "https://i.ibb.co/vZmYnx5/laura-ockel-n-IEHq-GSym-RU-unsplash-resized.jpg"
 alt: "Generic silicon wafer (not Apple)"
 summary: "Setting up your Apple Silicon Mac for linking and running x86 software. Build and run x86 Python natively (and with Docker)"
+description: "Blog post on how to set up your Apple Silicon Mac for developing using x86 software. Python Oracle Client is a case study."
 ---
 
 As a Web back-end developer, in general, I've been quite happy working on an

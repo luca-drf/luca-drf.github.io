@@ -7,6 +7,7 @@ featured: true
 image: "https://i.ibb.co/XXQxrhs/sujith-devanagari-ksb4-BNq5nfg-unsplash.jpg"
 alt: "Old cart wheel"
 summary: "Build Microsoft uAMQP Python package painlessly with Manylinux docker image"
+description: "Blog post on how to build uAMQP Python wheel for arm64v8."
 ---
 
 TL;DR

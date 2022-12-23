@@ -31,6 +31,7 @@ lastName = "Da Rin Fioretto"
 profileImage = "img/daro_profile.png"
 themeUrl = "https://github.com/luca-drf/hugo-resume"
 customCSS = ["css/resume-override.css"]
+description = "Luca Da Rin Fioretto's personal Webpage"
 showGitHubCorner = true
 showEducation = true
 showExperience = true

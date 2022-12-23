@@ -7,6 +7,7 @@ featured: true
 image: "https://i.ibb.co/QDGLbd2/jake-walker-MPKQi-Dp-Myq-U-unsplash-resized.jpg"
 alt: "Generic linux console output"
 summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it."
+description: "Blog post on how to capture Python subprocess output in real-time."
 ---
 
 TL;DR
@@ -70,7 +71,7 @@ without stopping it?
 A solution
 ----------
 
-### Use a text file instead of a pipe
+### Using a text file instead of a pipe
 
 We could redirect our subprocess _stdout_ to a file instead of a pipe, read the
 first few lines and forget about the rest until the subprocess terminate and

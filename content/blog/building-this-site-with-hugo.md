@@ -7,6 +7,7 @@ featured: true
 image: "https://i.ibb.co/8cSRNxf/resized-hugo.png"
 alt: "hugo logo"
 summary: "How I went from knowing nothing about HUGO framework to publishing my first custom website in just few days, all thanks to HUGO great ecosystem."
+description: "Blog post on my first impressions working with HUGO framework."
 ---
 
 HUGO is really **fast** when it comes to building static assets, but its real
