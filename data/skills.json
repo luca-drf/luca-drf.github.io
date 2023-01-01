@@ -20,6 +20,10 @@
     "skills": ["Kubernetes", "RabbitMQ", "OpenStack", "Ansible", "Terraform"]
   },
   {
+    "grouping": "Public Clouds",
+    "skills": [{"name": "AWS", "icon": "amazonwebservices"}, "Azure"]
+  },
+  {
     "grouping": "Version Control",
     "skills": ["Git", "Perforce Helix", "GitHub", "Travis", "GitLab"]
   },
