@@ -63,7 +63,7 @@ line</em> (i.e. use one <em>write</em> per line) so it&rsquo;s less confusing to
 no point in having that file on disk, what if it ends up being several gigabytes
 and the subprocess having to run for days? You don&rsquo;t want to be that person who
 forced IT to impose stricter quotas on your VMs mounts, do you? 😉</p><p>No, we&rsquo;re dealing with a stream of data, and we should be coding accordingly.</p><p>So, how can we stream the output of a subprocess as it gets generated, rather
-than waiting for it to terminate and print it all?</p><h3 id=what-does-the-official-python-documentation-suggest class=anchored-heading>What does the official Python documentation suggest? <a class="anchor js-scroll-trigger" href=#what-does-the-official-python-documentation-suggest><i class="fa fa-link anchor-icons"></i></a></h3><p>If we read Python&rsquo;s official documentation (as all good Pythonistas always do)
+than waiting for it to terminate and print it all?</p><h3 id=what-does-the-official-python-documentation-suggests class=anchored-heading>What does the official Python documentation suggests? <a class="anchor js-scroll-trigger" href=#what-does-the-official-python-documentation-suggests><i class="fa fa-link anchor-icons"></i></a></h3><p>If we read Python&rsquo;s official documentation (as all good Pythonistas always do)
 for <a href=https://docs.python.org/3/library/subprocess.html>subprocess module</a>,
 we&rsquo;re strongly encouraged to use <code>Popen.communicate()</code> for writing/reading
 piped subprocesses STDIN/STDOUT. That doesn&rsquo;t quite work the way we expect
