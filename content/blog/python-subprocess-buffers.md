@@ -120,7 +120,7 @@ So, how can we stream the output of a subprocess as it gets generated, rather
 than waiting for it to terminate and print it all?
 
 
-### What does the official Python documentation suggest?
+### What does the official Python documentation suggests?
 
 If we read Python's official documentation (as all good Pythonistas always do)
 for [subprocess module](https://docs.python.org/3/library/subprocess.html),
