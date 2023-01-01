@@ -76,6 +76,10 @@ name = "LinkedIn"
 link = "https://github.com/luca-drf/"
 name = "GitHub"
 
+[[params.handles]]
+link = "https://hachyderm.io/@radome"
+name = "Mastodon"
+
 [outputs]
 home = ["HTML", "JSON"]
 
