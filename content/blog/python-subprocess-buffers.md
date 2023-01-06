@@ -6,7 +6,7 @@ tags: [python, subprocess, unix]
 featured: true
 image: "https://i.ibb.co/QDGLbd2/jake-walker-MPKQi-Dp-Myq-U-unsplash-resized.jpg"
 alt: "Generic linux console output"
-summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it."
+summary: "The Interwebs are full of recipes on how to capture and stream the output of a Python subprocess in real-time. Most of them don't work, so here's how to do it (with Python 3)"
 description: "Blog post on how to capture Python subprocess output in real-time."
 ---
 
