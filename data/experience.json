@@ -2,7 +2,7 @@
     {
         "role": "Senior Software Engineer",
         "company": "[ARM](https://www.arm.com/) - IP Delivery",
-        "summary": "Designing implementing and maintaining tools for ARM's IP delivery.",
+        "summary": "Contributed to the development, maintainance, and design of serverless applications deployed on AWS using Python and NodeJS. Automated build, test and deployment of various Web backend services on multiple Cloud platforms (AWS EC2/Lambda, AKS, K8S on-prem) using Terraform/Terragrunt. Led the development of [edmgr](https://pypi.org/project/edmgr/), a Python CLI and library for interacting with Arm IP Delivery Web APIs.",
         "range": "May 2022 - Present"
     },
     {
