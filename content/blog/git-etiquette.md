@@ -86,8 +86,7 @@ information is usually displayed alongside a commit message (e.g. git log tree
 view, blame gutters or simply your favourite IDE's side panel) keeping your
 messages between those limits makes reading commit messages much easier in
 virtually all cases. Don't take my word for it, take
-[Tim Pope](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)
-one.
+[Tim Pope's](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 
 Great (even though a bit hardcore) examples of very well written commit messages
 can usually be found in the [Linux kernel repository](https://github.com/torvalds/linux/commits/master).
