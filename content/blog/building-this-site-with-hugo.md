@@ -3,7 +3,7 @@ title: "Building this site with HUGO"
 date: 2022-04-18T12:38:24+01:00
 tags: [web development, hugo, github]
 draft: false
-featured: true
+featured: false
 image: "https://i.ibb.co/8cSRNxf/resized-hugo.png"
 alt: "hugo logo"
 summary: "How I went from knowing nothing about HUGO framework to publishing my first custom website in just few days, all thanks to HUGO great ecosystem."
