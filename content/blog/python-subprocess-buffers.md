@@ -66,7 +66,7 @@ So, how can we read the first few lines written by a subprocess on its _stdout_,
 save them and throw away the rest while the subprocess is running and writing
 without stopping it?
 
-**TL;DR** (part 2), take me to the [solution](#another-better-solution)
+**TL;DR** (part 2), take me to the [solution](#another-but-better-solution)
 
 A solution
 ----------
