@@ -6,7 +6,7 @@ draft: false
 featured: true
 image: "https://i.ibb.co/wp0JVn9/yancy-min-842of-HC6-Ma-I-unsplash.jpg"
 alt: "Git Log in a VSCode panel"
-summary: "Five simple practices to Git like a pro and make your collaborators (and your future self) happier."
+summary: "Five simple practices to Git like a pro and make your collaborators (and your future self) happier"
 description: "Blog: Five simple practices to Git like a pro."
 ---
 
