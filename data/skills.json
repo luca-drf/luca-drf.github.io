@@ -8,8 +8,12 @@
     "skills": ["Pytest", "RSpec", "Jest", "GoogleTest"]
   },
   {
-    "grouping": "Web Frameworks",
-    "skills": ["Flask", "Django", "FastAPI", "gRPC", "VueJS"]
+    "grouping": "Web Frameworks (back-end)",
+    "skills": ["Flask", "Django", "FastAPI", "gRPC"]
+  },
+  {
+    "grouping": "Web Frameworks (front-end)",
+    "skills": ["VueJS", "Angular"]
   },
   {
     "grouping": "Databases",
