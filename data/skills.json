@@ -17,7 +17,7 @@
   },
   {
     "grouping": "Infrastructure",
-    "skills": ["Kubernetes", "RabbitMQ", "OpenStack", "Ansible", "Terraform"]
+    "skills": ["Kubernetes", "RabbitMQ", {"name": "OpenStack", "svg": "yo"}, "Ansible", "Terraform"]
   },
   {
     "grouping": "Public Clouds",
