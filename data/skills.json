@@ -1,7 +1,7 @@
 [
   {
     "grouping": "Programming Languages",
-    "skills": ["Python", "JavaScript", "Ruby", {"name": "C++", "icon": "cplusplus"}, "C", "Perl", "Java", "Bash"]
+    "skills": ["Python", "TypeScript", "Ruby", {"name": "C++", "icon": "cplusplus"}, "C", "Perl", "Java", "Bash"]
   },
   {
     "grouping": "Testing Frameworks",
