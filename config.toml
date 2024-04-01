@@ -22,7 +22,7 @@ enableRobotsTXT = true
     tabWidth = 4
 
 [params]
-jobTitle = "Senior Software Engineer"
+jobTitle = "Staff Software Engineer"
 employer = "Arm"
 employerUrl = "https://www.arm.com/"
 favicon = "/favicon.ico"
