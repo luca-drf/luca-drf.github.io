@@ -5,7 +5,7 @@
   },
   {
     "grouping": "Testing Frameworks",
-    "skills": ["Pytest", "RSpec", "Jest", "GoogleTest"]
+    "skills": ["Pytest", "RSpec", "Jest", {"name": "GoogleTest", "icon": "google"}]
   },
   {
     "grouping": "Web Frameworks (back-end)",
@@ -17,7 +17,7 @@
   },
   {
     "grouping": "Databases",
-    "skills": ["MySQL", "MongoDB", "PostgreSQL"]
+    "skills": ["PostgreSQL", "MongoDB", "MySQL", "Redis"]
   },
   {
     "grouping": "Infrastructure",
@@ -29,7 +29,7 @@
   },
   {
     "grouping": "Version Control",
-    "skills": ["Git", "Perforce Helix", "GitHub", "Travis", "GitLab"]
+    "skills": ["Git", "Perforce Helix", "GitHub", {"name": "Azure DevOps", "icon": "azuredevops"}, "GitLab"]
   },
   {
     "grouping": "Operating Systems",
