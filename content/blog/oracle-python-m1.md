@@ -3,7 +3,7 @@ title: "Oracle Client and Python on Apple Silicon"
 date: 2022-06-25T14:50:06+01:00
 draft: false
 tags: [python, oracle, arm, apple m1, docker]
-featured: true
+featured: false
 image: "https://i.ibb.co/vZmYnx5/laura-ockel-n-IEHq-GSym-RU-unsplash-resized.jpg"
 alt: "Generic silicon wafer (not Apple)"
 summary: "Setting up your Apple Silicon Mac for linking and running x86 software. Build and run x86 Python natively (and with Docker)"
