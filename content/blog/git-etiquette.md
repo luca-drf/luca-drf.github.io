@@ -105,7 +105,7 @@ tends to be inversely proportional to the number of changes to review (i.e. it's
 likely that reviewers will tend to skim through pull requests with hundreds of
 changed lines, rather of accurately review all of them).
 
-{{< tweet user="iamdevloper" id="397664295875805184" >}}
+{{< x user="iamdevloper" id="397664295875805184" >}}
 
 
 ### 4. Remember the golden rule of rebasing
