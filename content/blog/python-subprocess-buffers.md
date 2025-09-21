@@ -2,7 +2,7 @@
 title: "Capture Python subprocess output in real-time"
 date: 2022-11-20T17:49:41Z
 draft: false
-tags: [python, subprocess, unix]
+tags: [python, unix]
 featured: true
 image: "https://i.ibb.co/QDGLbd2/jake-walker-MPKQi-Dp-Myq-U-unsplash-resized.jpg"
 alt: "Generic linux console output"
